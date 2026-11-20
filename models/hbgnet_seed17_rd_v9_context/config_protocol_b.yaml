@@ -1,0 +1,126 @@
+experiment:
+  run_name: hbgnet_protocol_b_seed17_rd_v9_context
+  stage: HBGNet_seed17_rd_v9_context
+dataset:
+  name: AI4Boundaries_1m
+  variant: parcel_focused
+  variants:
+    parcel_focused:
+      protocol: B
+      purpose: main_comparison
+      root: /root/wyk5/dataset/AI4Boundaries_1m_parcel_focused_256
+      image_dir: /root/wyk5/dataset/AI4Boundaries_1m_parcel_focused_256/images
+      mask_dir: /root/wyk5/dataset/AI4Boundaries_1m_parcel_focused_256/masks
+      manifests:
+        train: /root/wyk5/RGVNet/splits/ai4boundaries/train.txt
+        val: /root/wyk5/RGVNet/splits/ai4boundaries/val.txt
+        test: /root/wyk5/RGVNet/splits/ai4boundaries/test.txt
+      image_suffix: _ortho_1m_256.tif
+      mask_suffix: _ortholabel_1m_256.tif
+      input_size:
+      - 256
+      - 256
+  image_bands:
+  - 1
+  - 2
+  - 3
+  region_band: 1
+  boundary_band: 2
+  distance_band: 3
+  batch_size: 8
+  val_batch_size: 8
+  num_workers: 8
+  persistent_workers: false
+augmentation:
+  enabled: true
+  horizontal_flip_probability: 0.5
+  vertical_flip_probability: 0.5
+  rotate_90_probability: 0.5
+normalization:
+  mean:
+  - 0.485
+  - 0.456
+  - 0.406
+  std:
+  - 0.229
+  - 0.224
+  - 0.225
+model:
+  name: HBGNet
+  backbone: pvt_v2_b2
+  channel: 32
+  boundary_classes: 2
+  drop_rate: 0.4
+  pretrained_path: /root/wyk5/RGVNet/models/hbgnet_seed17_rd_v9_context/pretrained/pvt_v2_b2.pth
+  refinement:
+    enabled: true
+    max_delta: 2.0
+    checkpoint_groups: true
+    mode: local_separation_v2
+    hidden_channels: 16
+    path_channels: 4
+    radii:
+    - 2
+    - 4
+    verifier:
+      enabled: true
+      mode: enabled
+      aggregation: multi_scale_support
+loss:
+  name: rd_v9_context_fullloss_sr_band
+  raw_region_weight: 0.5
+  sr_region_weight: 0.5
+  raw_band_weight: 0.125
+  sr_band_weight: 0.125
+  band_radius_pixels: 2
+  verifier_weight: 1.0
+  verifier_loss_mode: ordinary_bce_present_direction_average
+  final_region_loss: false
+  weights:
+  - 1
+  - 1
+  - 1
+training:
+  epochs: 40
+  seed: 17
+  gradient_accumulation_steps: 2
+  amp: false
+  optimizer: Adam
+  learning_rate: 0.0001
+  weight_decay: 0.0
+  scheduler: CosineAnnealingLR
+  scheduler_t_max: 10000000000
+  min_lr: 1.0e-05
+  validation_interval: 2
+  final_validation_epochs: 5
+  log_interval: 20
+  selection: 0.7_iou_0.3_bf1
+  iou_floor: 0.8205741376917083
+evaluation:
+  protocol: HBGNet-metrics-ProtocolB-256-3m
+  region_threshold: 0.5
+  boundary_threshold: 0.84
+  primary_output: region
+  tta: false
+  small_object_removal: false
+  spatial_resolution_m: 1.0
+  boundary_tolerance_m: 3.0
+  aggregation: region_micro_boundary_micro_object_global_area_weighted
+  primary_metrics:
+  - f1
+  - iou
+  - f_boundary
+  - goc
+  - guc
+  - gtc
+  diagnostic_metrics:
+  - oa
+  - precision
+  - recall
+  - boundary_completeness
+  - boundary_correctness
+paths:
+  train_log_root: /root/wyk5/RGVNet/z_1_trainning_log/AI4Boundaries_1m
+  test_log_root: /root/wyk5/RGVNet/z_2_test/AI4Boundaries_1m
+  weights_root: /root/wyk5/RGVNet/z_3_weights/AI4Boundaries_1m
+  results_root: /root/wyk5/RGVNet/z_4_results/AI4Boundaries_1m

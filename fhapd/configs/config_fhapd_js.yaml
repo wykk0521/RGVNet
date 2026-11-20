@@ -1,0 +1,127 @@
+adaptation:
+  schema: fhapd-protocol-b-compatible-data-v1
+  dataset: FHAPD_JS
+  status: data_adapter_only
+  run_config_ready: false
+  auto_train: false
+  auto_test: false
+  target_version: fhapd-bsinet-canny100-200-l2-mask3-minmax-u8-v1
+  data_manifest_sha256: b3fa19cdd45877afc41a5123ff3e0340b573f33722a4a79b8b22a6703a36caa8
+  split_manifest_sha256:
+    train: 41b009fe25905127b34c6c68f8ae7627aa4ed67864c45a3ec84b4dd7a76154d5
+    val: d7f7cb2de3ff2da29279770329896e92945c4834d2103a09244c26a1cbe2fbf3
+    test: d737be9412199aa66769abaa455ba05e3c0b4a8690ba0fdbb2f94d2d7197e2dc
+  training_package_note: A new model/seed run must freeze its own identity, fingerprint
+    and engineering receipt.
+dataset:
+  name: FHAPD_JS
+  variant: spatial_nonoverlap_v1
+  variants:
+    spatial_nonoverlap_v1:
+      protocol: FHAPD-ProtocolB-compatible-spatial-v1
+      purpose: within_region_spatial_holdout
+      root: /root/wyk5/dataset/FHAPD_JS_protocol_b_v1
+      image_dir: /root/wyk5/dataset/FHAPD_JS_protocol_b_v1/images
+      mask_dir: /root/wyk5/dataset/FHAPD_JS_protocol_b_v1/masks
+      manifests:
+        train: /root/wyk5/RGVNet/splits/fhapd_js/train.txt
+        val: /root/wyk5/RGVNet/splits/fhapd_js/val.txt
+        test: /root/wyk5/RGVNet/splits/fhapd_js/test.txt
+      image_suffix: .png
+      mask_suffix: .tif
+      input_size:
+      - 256
+      - 256
+  image_bands:
+  - 1
+  - 2
+  - 3
+  region_band: 1
+  boundary_band: 2
+  distance_band: 3
+  expected_counts:
+    train: 592
+    val: 117
+    test: 142
+  batch_size: 8
+  val_batch_size: 8
+  num_workers: 8
+  persistent_workers: false
+augmentation:
+  enabled: true
+  horizontal_flip_probability: 0.5
+  vertical_flip_probability: 0.5
+  rotate_90_probability: 0.5
+normalization:
+  mean:
+  - 0.485
+  - 0.456
+  - 0.406
+  std:
+  - 0.229
+  - 0.224
+  - 0.225
+training_recipe_reference:
+  epochs: 40
+  gradient_accumulation_steps: 2
+  amp: false
+  optimizer: Adam
+  learning_rate: 0.0001
+  weight_decay: 0.0
+  scheduler: CosineAnnealingLR
+  scheduler_t_max: 10000000000
+  min_lr: 1.0e-05
+  validation_interval: 2
+  final_validation_epochs: 5
+  log_interval: 20
+  selection: 0.7_iou_0.3_bf1
+initialization_reference: Official ImageNet PVT-v2-B2 only; no resume from AI4Boundaries
+  trained checkpoints.
+iou_floor_reference:
+  ai4boundaries_value: 0.8205741376917083
+  apply_to_fhapd: false
+  reason: This value belongs to the AI4Boundaries control; it is not an established
+    FHAPD floor.
+loss_reference:
+  baseline: BCEDice region + two-class Boundary NLL + Distance MSE; weights [1,1,1]
+  sr_rd: Copy the authorized module-specific loss and supervision sites into each
+    new model run.
+  target_changes: FHAPD boundary/distance generated from binary mask; not native AI4Boundaries
+    labels.
+evaluation:
+  protocol: HBGNet-metrics-FHAPD-256-3px-spatial-v1
+  region_threshold: 0.5
+  threshold_comparison: '>'
+  primary_output: region
+  tta: false
+  small_object_removal: false
+  spatial_resolution_m: null
+  boundary_tolerance_m: null
+  requested_boundary_tolerance_m: 3.0
+  boundary_tolerance_pixels: 3
+  physical_tolerance_verified: false
+  physical_resolution_evidence: Source PNG files have no CRS/geotransform; identity
+    pixel transform is not GSD.
+  aggregation: region_micro_boundary_micro_object_global_area_weighted
+  primary_metrics:
+  - f1
+  - iou
+  - f_boundary
+  - goc
+  - guc
+  - gtc
+  diagnostic_metrics:
+  - oa
+  - precision
+  - recall
+  - boundary_completeness
+  - boundary_correctness
+  narrow_structure_metrics:
+    status: not_defined_in_frozen_evaluator
+    value: null
+paths:
+  train_log_root: /root/wyk5/RGVNet/z_1_trainning_log/FHAPD_JS
+  test_log_root: /root/wyk5/RGVNet/z_2_test/FHAPD_JS
+  weights_root: /root/wyk5/RGVNet/z_3_weights/FHAPD_JS
+  results_root: /root/wyk5/RGVNet/z_4_results/FHAPD_JS
+  local_backup_root: E:/A-94服务器备份-地块分割/FHAPD_JS

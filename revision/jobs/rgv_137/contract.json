@@ -1,0 +1,43 @@
+{
+  "dataset_sha256": {
+    "test": "f669288a374c4a3fed1c3a0379e995ebe1db6a35564a10b6a0241613a4093163",
+    "train": "85e9ff248be6aa66fcbdba82d1f61a0d26d9ead9ef449a6708e211abc7181201",
+    "val": "4be22a48eead8fe9c91f58c890dc161e70d81ff956b4ba75b2e92198f86dd5cd"
+  },
+  "family": "rgv",
+  "id": "rgv_137",
+  "pretrained_sha256": "80711cd1b37ffba12bec6c7a2a7c54efe2315ed635e6d2055fd51c3e909ede4d",
+  "runtime_cgroup_memory_max": "8589934592",
+  "samples": {
+    "test": 3014,
+    "train": 13890,
+    "val": 3067
+  },
+  "seed": 137,
+  "sources": {
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/common.py": "03f0cdff2f30c3d444afb10001e7963f634e80f871ff6b2bd409787ba736a6f6",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/config_protocol_b.yaml": "bd9ed945a47cad7b5cd6a42108a5d4e89294b59427f2929d0eeb4ff677394078",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/implementation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/implementation/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/implementation/lib/pvtv2.py": "bad9a96bca9841679b5f7a5a97bf9bbc4239611fb4be6d0ba0783f64e4f9dc8c",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/implementation/losses.py": "719a43e76617bf1d6225c23a50c73a08a96678e9e4d7094b33997a9effe499f0",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/implementation/model.py": "48d2c492eb5ebd5aa47afdca4d4a9f57dd9b858928f1da001a88f026d6791cda",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/protocol/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/protocol/candidate_diagnostics.py": "377031e51e77a29bc69b14bb69486206721540e5c9cfd4e4ad3e1b8a8a7472e2",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/protocol/dataset.py": "c1c53f54d99391707d0dd69c8edd606a20808230e758b2a8be0751d7735acea0",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/protocol/hbgnet_baseline.yaml": "0236722e915dfee527979ee87436f0d7b2cf6138343a08599484153f8f469312",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/protocol/metrics.py": "56109c18e4f78fba87da10e739003bad9916df4434ae20ce423b73a68c6bc985",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/train.py": "6472b94e0a3c35edf9857ac4321bd68e61d11d1fc0e3a38d89a477a1a99f4677",
+    "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/training_state.py": "4144b6ccf177bcc4367b4a96548db3bb37c3a34eba9d1186817f90ce07502f0e",
+    "/root/wyk5/RGVNet/tools/__init__.py": "6e349f7d8cde52b5fdd8d13dc54b7bf756b181b322e5e0d7ed58b3abbea337f8",
+    "/root/wyk5/RGVNet/tools/local_separation_refinement_v2.py": "15bdfa1c2c09bf1b46fecbcd2b0fd42cb268d3af4f19914dc4cca44fa16bda85",
+    "/root/wyk5/RGVNet/tools/region_boundary_band_loss_v2.py": "bc9e97186769fae0bccc5be55b33fe0f102346c9e641a089841f7a1ff236adcd",
+    "/root/wyk5/RGVNet/tools/region_discrimination_v8_grok_fullloss.py": "05f861b7a8c6f0efe28b8ee5607cc7b9f3342834e73c89ec88300795321f96b0",
+    "/root/wyk5/RGVNet/tools/region_discrimination_v9.py": "7626ef4b7155282aa0cfedb3eb77c60c36fd752adb66f82a8dfb24e395bbd0ce",
+    "/root/wyk5/RGVNet/revision/code/prepare.py": "6eabbc49db4f3b20dbd63ec8f93e2721a3986a16ab44aa6c2875d99a202e3b5b",
+    "/root/wyk5/RGVNet/revision/code/runtime_adapter.py": "76b5cdf12d4231dc5f02157738c1104bceb2016f45ab0de86c9a810e78a7317d",
+    "/root/wyk5/RGVNet/revision/jobs/rgv_137/config.yaml": "95082a62bb2fedb883fb5fda421d76d8219564f38cca6a7948d0b635d9e5e085",
+    "/root/wyk5/RGVNet/revision/jobs/rgv_137/trainer.py": "96c992c0c0b890c6ac8657979b3debb9287f09811d36dfa6fe00023fa2e0a56a"
+  },
+  "template": "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v9_context/config_protocol_b.yaml"
+}

@@ -1,0 +1,22 @@
+{
+  "repository": "https://github.com/NanNanmei/HBGNet",
+  "branch": "main",
+  "commit": null,
+  "commit_status": "GitHub API unavailable; use content-addressed file hashes, not a claimed commit",
+  "retrieved_utc": "2026-09-12T17:27:03.024946+00:00",
+  "cdn": "https://cdn.jsdelivr.net/gh/NanNanmei/HBGNet@main/",
+  "integrity_listing": "https://data.jsdelivr.com/v1/package/gh/NanNanmei/HBGNet@main",
+  "paper": "A large-scale VHR parcel dataset and a novel hierarchical semantic boundary-guided network for agricultural parcel delineation",
+  "paper_url": "https://www.sciencedirect.com/science/article/pii/S0924271625000395",
+  "license": "No LICENSE file in retrieved repository listing; public source does not imply redistribution permission",
+  "files_sha256": {
+    "dataset.py": "1988c15f4e91c682f86840c20188fc3f53fdb4fa8bb7f7114453d9bb9dadb7bb",
+    "losses.py": "719a43e76617bf1d6225c23a50c73a08a96678e9e4d7094b33997a9effe499f0",
+    "models.py": "3371ebfc70659da6a6703e8389e3a0512b6804dbbeedfdce95b6a95784d0c8b1",
+    "README.md": "75207f23742e33131839684ab18f735a52d6e9ea276c21511df555ad86d74880",
+    "test.py": "a2a52845e76fb110bb7e3b5c807590bed60fcc6a24c62d5eac4e763398cd7276",
+    "train.py": "e6db94e004ee8bcee0f94987b15432c885ea9cc8d3f376fa83df1c3fa0dca448",
+    "utils.py": "b419d96a1e4830a4bef7679a8047891be52aea5fcc2e09db0502b38490eae0f5",
+    "lib/pvtv2.py": "bad9a96bca9841679b5f7a5a97bf9bbc4239611fb4be6d0ba0783f64e4f9dc8c"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "sha256": "80711cd1b37ffba12bec6c7a2a7c54efe2315ed635e6d2055fd51c3e909ede4d",
+  "bytes": 101501299,
+  "source_url": "user-upload:pvt_v2_b2.pth",
+  "source_evidence": "User supplied pvt_v2_b2.pth after request for official PVT-v2-B2 checkpoint and authorized training. Exact download origin was not independently attested.",
+  "expected_official_url": "https://github.com/whai362/PVT/releases/download/v2/pvt_v2_b2.pth",
+  "validation": "CPU weights_only load, 332/332 backbone keys strict with finite tensors; only classification head extra keys",
+  "backbone_keys_loaded": 332,
+  "publisher_checksum_verified": false,
+  "recorded_utc": "2026-09-12T18:47:15.137682+00:00"
+}

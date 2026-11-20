@@ -1,0 +1,38 @@
+{
+  "schema": "fhapd-training-clone-v1",
+  "name": "hbgnet_fhapd_js_baseline_seed73",
+  "seed": 73,
+  "dataset": "FHAPD_JS",
+  "model_kind": "baseline",
+  "physical_gpu": 2,
+  "source_package": "E:\\A-94服务器备份-地块分割\\AI4boundaries\\04_baseline_hbgnet_seed73_gpu0\\package",
+  "source_package_manifest_sha256": "7ac7f38c77f7be125f5a46865ce73ce781f7a93cc000ebf4f7d82c7e72aa986b",
+  "unchanged_source_files_sha256": {
+    "implementation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "implementation/model.py": "2b217ec6cab49e29fdf381391eb1fcc83ffecdfa843f26c4bd7fe362fced61e1",
+    "implementation/losses.py": "719a43e76617bf1d6225c23a50c73a08a96678e9e4d7094b33997a9effe499f0",
+    "implementation/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "implementation/lib/pvtv2.py": "bad9a96bca9841679b5f7a5a97bf9bbc4239611fb4be6d0ba0783f64e4f9dc8c",
+    "tools/__init__.py": "6e349f7d8cde52b5fdd8d13dc54b7bf756b181b322e5e0d7ed58b3abbea337f8",
+    "tools/local_separation_refinement_v2.py": "15bdfa1c2c09bf1b46fecbcd2b0fd42cb268d3af4f19914dc4cca44fa16bda85",
+    "tools/region_boundary_band_loss_v2.py": "bc9e97186769fae0bccc5be55b33fe0f102346c9e641a089841f7a1ff236adcd",
+    "tools/region_discrimination_v9.py": "7626ef4b7155282aa0cfedb3eb77c60c36fd752adb66f82a8dfb24e395bbd0ce",
+    "tools/region_discrimination_v8_grok_fullloss.py": "05f861b7a8c6f0efe28b8ee5607cc7b9f3342834e73c89ec88300795321f96b0",
+    "protocol/dataset.py": "c1c53f54d99391707d0dd69c8edd606a20808230e758b2a8be0751d7735acea0",
+    "protocol/metrics.py": "93076dcdfcd17d9ee72beebd3a04f1379a82c05185553a760689edaaf0b309e6",
+    "protocol/evaluation_adapter.py": "9297983b6d5cac96b0c57b89c7d6aedcda973fa13b78540620bf5dcf5e0c93db"
+  },
+  "initialization": "official_PVT_v2_B2_only",
+  "pretrained_sha256": "80711cd1b37ffba12bec6c7a2a7c54efe2315ed635e6d2055fd51c3e909ede4d",
+  "resume": false,
+  "auto_test": false,
+  "changes": [
+    "new FHAPD identity/config/data fingerprint",
+    "self-contained tools and timm dependency",
+    "FHAPD strict probability >0.5 validation with config 3px tolerance",
+    "region-specific complete validation counts and null object metrics",
+    "IoU floor disabled; best uses 0.7 IoU + 0.3 BF1",
+    "fresh CPU/GPU acceptance and finite startup audit",
+    "formal test entrypoint disabled"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "hbgnet-seed-clone-v1",
+  "target_package": "/root/wyk5/RGVNet/models/hbgnet_seed17_rd_v9_context",
+  "target_run_name": "hbgnet_protocol_b_seed17_rd_v9_context",
+  "target_seed": 17,
+  "physical_gpu": 0,
+  "auto_test": false,
+  "resume": false,
+  "initialization": "official_PVT_v2_B2_only",
+  "source_templates": {
+    "static_package_sources": "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v8_grok_fullloss",
+    "v8_template_package": "/root/wyk5/RGVNet/models/hbgnet_seed73_rd_v8_grok_fullloss",
+    "v9_scoring_tool": "tools/region_discrimination_v9.py",
+    "v8_scoring_dependency": "tools/region_discrimination_v8_grok_fullloss.py"
+  },
+  "adaptations": [
+    "run/stage/seed/physical-GPU/pretrained-path identity only",
+    "rd_v9_context verifier import, config aggregation key and guards",
+    "verify_rd_v9_context.py, verify_rd_v9_context_unit.py and verify_v9_diagnostics.py replace the v8 verifiers",
+    "launch_rd_v9_context_audited.py with pinned v9 parameter counts",
+    "manifest and verification regenerated for this seed"
+  ],
+  "external_files_sha256": {
+    "tools/__init__.py": "6e349f7d8cde52b5fdd8d13dc54b7bf756b181b322e5e0d7ed58b3abbea337f8",
+    "tools/local_separation_refinement_v2.py": "15bdfa1c2c09bf1b46fecbcd2b0fd42cb268d3af4f19914dc4cca44fa16bda85",
+    "tools/region_boundary_band_loss_v2.py": "bc9e97186769fae0bccc5be55b33fe0f102346c9e641a089841f7a1ff236adcd",
+    "tools/region_discrimination_v9.py": "7626ef4b7155282aa0cfedb3eb77c60c36fd752adb66f82a8dfb24e395bbd0ce",
+    "tools/region_discrimination_v8_grok_fullloss.py": "05f861b7a8c6f0efe28b8ee5607cc7b9f3342834e73c89ec88300795321f96b0"
+  },
+  "package_files_sha256": {
+    "common.py": "748052226cc16d617d8d1d1834378e8d4b69b2fe42a083e0d1606afc59e79504",
+    "config_protocol_b.yaml": "c6aeeb80085e85c48f0f6f00ecc9e85359377b960e41c7a7d85b909b00744e74",
+    "evaluate.py": "a5b4d86c0beb707b9d40254d8d0a06c860d43437e0d0af287cba502f061c96a9",
+    "implementation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "implementation/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "implementation/lib/pvtv2.py": "bad9a96bca9841679b5f7a5a97bf9bbc4239611fb4be6d0ba0783f64e4f9dc8c",
+    "implementation/losses.py": "719a43e76617bf1d6225c23a50c73a08a96678e9e4d7094b33997a9effe499f0",
+    "implementation/model.py": "48d2c492eb5ebd5aa47afdca4d4a9f57dd9b858928f1da001a88f026d6791cda",
+    "launch_rd_v9_context_audited.py": "c8c41da13bb7921a170d57d3bdc983d4aed14d4d886d0b2b2e1b311022c7347a",
+    "pretrained/pvt_v2_b2.json": "38ee48095a594b07547658947889993a46f16e5cb4ae191b51716478253bace6",
+    "protocol/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "protocol/candidate_diagnostics.py": "377031e51e77a29bc69b14bb69486206721540e5c9cfd4e4ad3e1b8a8a7472e2",
+    "protocol/dataset.py": "c1c53f54d99391707d0dd69c8edd606a20808230e758b2a8be0751d7735acea0",
+    "protocol/hbgnet_baseline.yaml": "4c0fa1573fe9d18888764591e0829bc80ac4a9a0fd0091e60b6e84be8dc8b388",
+    "protocol/metrics.py": "56109c18e4f78fba87da10e739003bad9916df4434ae20ce423b73a68c6bc985",
+    "README.md": "2c3fd840208e7856c7afb2bdb158d6ed71c21a5cb046121735d238f5dc1b9145",
+    "run_evaluate.sh": "e4b2cd5d653379f8fe6c4a84ddba94107902a2ad1c2766c46213a2691e3c7735",
+    "run_train.sh": "4f21d7fd001be5a58a5d821afd8e564a332bd3e6ca355f397b9afefe6f95e613",
+    "train.py": "0df9fe91b569a60ece725b2f4578e047a7650bd4d6108b58eb8a6fcf52554411",
+    "training_state.py": "4144b6ccf177bcc4367b4a96548db3bb37c3a34eba9d1186817f90ce07502f0e",
+    "verify_band_loss.py": "dcfd6c80a412c8e6dbacfc71db2685dce759b94d3d1f276a4eed4b3edb5a1ec4",
+    "verify_local_separation.py": "cacdebc6acc80e2142a7d2019417ce1d18a7ab2a725a077c7c1190155793ee58",
+    "verify_rd_v9_context.py": "0c1ea9da485cb75fba9f94d0f5bdd2e4149bd12ccfeb4794b511e194181bf5c8",
+    "verify_rd_v9_context_unit.py": "70d28f07dd1c99010fdb2ba3842a650e00692992dde5d868c0e241b2140e5319",
+    "verify_training_state.py": "567962ab36ea7bd86d1589781edf2e78040e014a0892ea2d3db11ffb93cf4360",
+    "verify_v9_diagnostics.py": "1bfc8fe7800c2b107a11e44c65aa322f582f4f017b4c6c7a37ef5f4dafb5a6fd",
+    "VERSION_RECORD_seed17.md": "5ddb7eeaf275dac6c5878d9ea2095d152857ab1648aa8927f5d76e4a453c43c8"
+  },
+  "package_files_sha256_note": "hashes every package file that exists when this provenance is written; clone_provenance.json itself is hashed in package_manifest.json, which is written after it"
+}

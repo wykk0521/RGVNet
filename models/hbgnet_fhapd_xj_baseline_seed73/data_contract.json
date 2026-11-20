@@ -1,0 +1,22 @@
+{
+  "dataset": "FHAPD_XJ",
+  "data_adapter_config_sha256": "483752dbca50a7f0f53ef0f05c5b02f10f39fd5184548af41202b08b6e3211a6",
+  "data_adapter_package_manifest_sha256": "b78726ace2444421294b662919785ec8bc1ed6bf175fc22146f6b0ac9f964d96",
+  "data_manifest_sha256": "5a944dde4a5c8777a3eef86d83b1a2aa7de2c43149d86540b92be9c5cc836d2a",
+  "split_manifest_sha256": {
+    "train": "b63c9766ee80941f302492b416d7db0e728a2ad8653e878d366f20aa20edefc6",
+    "val": "c20530bb78b8861716ed827cfb91fd18aafde386e27ab36135a261ee0e058ae4",
+    "test": "d25ab89d383a88a3059cd54eef41267b746d00394ca2946abb9b9822e262d934"
+  },
+  "expected_counts": {
+    "train": 382,
+    "val": 83,
+    "test": 89
+  },
+  "training_pixel_scope": [
+    "train",
+    "val"
+  ],
+  "test_pixels_allowed_during_training": false,
+  "physical_tolerance_verified": false
+}

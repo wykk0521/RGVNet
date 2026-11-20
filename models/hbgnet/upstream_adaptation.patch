@@ -1,0 +1,46 @@
+--- upstream/models.py
++++ implementation/model.py
+@@ -15,7 +15,7 @@
+ import torch.nn.functional as F
+ # from functools import partial
+ # from timm.models.layers import DropPath, to_2tuple, trunc_normal_
+-from lib.pvtv2 import pvt_v2_b2
++from .lib.pvtv2 import pvt_v2_b2
+ # from tensorboardX import SummaryWriter
+ 
+ def conv3x3(in_, out):
+@@ -478,17 +478,27 @@
+ 
+ 
+ class Field(nn.Module):
+-    def __init__(self, channel=32,num_classes=2,drop_rate=0.4):
++    def __init__(self, channel=32,num_classes=2,drop_rate=0.4, pretrained_path=None):
+         super(Field, self).__init__()
+ 
+         self.drop = nn.Dropout2d(drop_rate)
+         self.backbone = pvt_v2_b2()  # [64, 128, 320, 512]
+-        path = r"E:\zhaohang\DeepL\code\model_New\preweight\pvt_v2_b2.pth"
+-        save_model = torch.load(path)
+-        model_dict = self.backbone.state_dict()
+-        state_dict = {k: v for k, v in save_model.items() if k in model_dict.keys()}
+-        model_dict.update(state_dict)
+-        self.backbone.load_state_dict(model_dict)
++        if pretrained_path is not None:
++            save_model = torch.load(pretrained_path, map_location='cpu', weights_only=True)
++            if isinstance(save_model, dict) and 'state_dict' in save_model:
++                save_model = save_model['state_dict']
++            if isinstance(save_model, dict) and 'model' in save_model:
++                save_model = save_model['model']
++            expected = self.backbone.state_dict()
++            state_dict = {k: v for k, v in save_model.items() if k in expected}
++            extras = set(save_model) - set(expected)
++            if extras - {'head.weight', 'head.bias'}:
++                raise ValueError(f'Unexpected PVT pretraining keys: {sorted(extras)}')
++            if set(state_dict) != set(expected):
++                raise ValueError(f'Incomplete PVT pretraining: {len(state_dict)}/{len(expected)} keys')
++            if any(not torch.isfinite(v).all() for v in state_dict.values()):
++                raise ValueError('Non-finite PVT pretraining weights')
++            self.backbone.load_state_dict(state_dict, strict=True)
+         self.channel = channel
+         self.num_classes = num_classes
+ 

@@ -1,0 +1,202 @@
+experiment:
+  stage: formal_wavelet_relation_v5_patch_mean_variance
+  baseline_protocol_config: /root/wyk5/RGVNet/z_6_不同消融组代码/基线/v2.1/snapshot/ai4boundaries/config_baseline.yaml
+dataset:
+  name: AI4Boundaries_1m
+  variant: parcel_focused
+  variants:
+    official_complete:
+      protocol: A
+      purpose: challenging_robustness
+      root: /root/wyk5/dataset/AI4Boundaries_1m
+      image_dir: /root/wyk5/dataset/AI4Boundaries_1m/images
+      mask_dir: /root/wyk5/dataset/AI4Boundaries_1m/masks
+      manifests:
+        train: /root/wyk5/Base/outputs/splits/ai4boundaries_train.txt
+        val: /root/wyk5/Base/outputs/splits/ai4boundaries_val.txt
+        test: /root/wyk5/Base/outputs/splits/ai4boundaries_test.txt
+      image_suffix: _ortho_1m_512.tif
+      mask_suffix: _ortholabel_1m_512.tif
+      input_size:
+      - 512
+      - 512
+    parcel_focused:
+      protocol: B
+      purpose: main_comparison
+      root: /root/wyk5/dataset/AI4Boundaries_1m_parcel_focused_256
+      image_dir: /root/wyk5/dataset/AI4Boundaries_1m_parcel_focused_256/images
+      mask_dir: /root/wyk5/dataset/AI4Boundaries_1m_parcel_focused_256/masks
+      manifests:
+        train: /root/wyk5/RGVNet/splits/ai4boundaries/train.txt
+        val: /root/wyk5/RGVNet/splits/ai4boundaries/val.txt
+        test: /root/wyk5/RGVNet/splits/ai4boundaries/test.txt
+      image_suffix: _ortho_1m_256.tif
+      mask_suffix: _ortholabel_1m_256.tif
+      input_size:
+      - 256
+      - 256
+  image_bands:
+  - 1
+  - 2
+  - 3
+  region_band: 1
+  boundary_band: 2
+  distance_band: 3
+  batch_size: 8
+  val_batch_size: 8
+  num_workers: 8
+  persistent_workers: false
+augmentation:
+  enabled: true
+  horizontal_flip_probability: 0.5
+  vertical_flip_probability: 0.5
+  rotate_90_probability: 0.5
+normalization:
+  mean:
+  - 0.485
+  - 0.456
+  - 0.406
+  std:
+  - 0.229
+  - 0.224
+  - 0.225
+model:
+  name: SEANet
+  source_commit: 2f7e7d6c7a01c9bdd291531b770934878824787b
+  input_channels: 3
+  num_classes: 1
+  vgg16_mat: /root/wyk5/RGVNet/vgg16convs.mat
+  wavelet_candidate:
+    enabled: false
+    supervision_enabled: false
+    residual_enabled: false
+    in_channels: 256
+    reduced_channels: 32
+    output_channels: 32
+    dropout: 0.0
+    residual_scale_init: 0.01
+    residual_scale_max: 0.05
+    residual_clip: 2.0
+    supervision_weight: 0.1
+  semantic_wavelet_candidate:
+    architecture:
+      enabled: true
+      mode: semantic_wavelet
+      semantic_channels: 64
+      detail_channels: 64
+      hidden_channels: 32
+      band_channels: 8
+      scales:
+      - 1
+      - 2
+      include_lowpass: true
+      fusion: semantic_gate
+      residual_scale: 0.25
+      detach_inputs: false
+    supervision:
+      weight: 0.1
+    diagnostics:
+      candidate_threshold: 0.5
+      histogram_bins: 512
+      contrast_cutoffs:
+      - 0.03932584269662921
+      - 0.07278944797264289
+  relation_validation:
+    architecture:
+      enabled: true
+      semantic_channels: 64
+      hidden_channels: 16
+      candidate_channels: 32
+      use_candidate: true
+      use_pairwise: true
+      radii:
+      - 2
+      - 4
+      region_refinement: true
+      max_logit_delta: 0.5
+      attention_floor: 0.25
+      detach_candidate: true
+      pair_representation: patch_mean_variance
+      patch_size: 3
+    supervision:
+      weight: 0.1
+tasks:
+  region:
+    target: mask_band_1_extent
+    loss: BCEDiceLoss
+  boundary:
+    target: mask_band_2_boundary
+    loss: RCFClassBalancedBCE
+    reduction: balanced_mean
+    scale: 1.0
+    reason: normalized_class_balanced_bce_independent_of_batch_and_resolution
+  distance:
+    target: mask_band_3_distance
+    loss: MSELoss
+training:
+  epochs: 40
+  seed: 41
+  gradient_accumulation_steps: 2
+  effective_batch_size: 16
+  amp: false
+  optimizer_backbone: SGD
+  learning_rate_backbone: 1.0e-08
+  learning_rate_edge: 0.0001
+  edge_down_weight_lr_multiplier: 1.0
+  edge_down_bias_lr_multiplier: 2.0
+  edge_dsn_weight_lr_multiplier: 1.0
+  edge_dsn_bias_lr_multiplier: 2.0
+  momentum: 0.9
+  weight_decay: 0.0002
+  optimizer_decoder: Apollo
+  learning_rate_decoder: 0.01
+  decoder_scheduler: CosineAnnealingLR
+  decoder_scheduler_t_max: 40
+  decoder_min_lr: 1.0e-05
+  scheduler: StepLR_backbone_only_edge_fixed
+  scheduler_step_size: 6
+  scheduler_gamma: 0.1
+  decay_edge_learning_rate: false
+  score_final_weight_lr_multiplier: 1.0
+  score_final_bias_lr_multiplier: 2.0
+  validation_interval: 2
+  final_validation_epochs: 5
+  checkpoint_monitor: checkpoint_score
+  checkpoint_mode: max
+  checkpoint_score:
+    region_iou: 0.7
+    region_boundary_f1: 0.3
+  log_interval: 20
+  retain_last_checkpoint: true
+evaluation:
+  protocol: HBGNet-metrics-ProtocolB-256-3m
+  region_threshold: 0.5
+  boundary_threshold: 0.84
+  primary_output: region
+  tta: false
+  small_object_removal: false
+  spatial_resolution_m: 1.0
+  boundary_tolerance_m: 3.0
+  aggregation: region_micro_boundary_micro_object_global_area_weighted
+  primary_metrics:
+  - f1
+  - iou
+  - f_boundary
+  - goc
+  - guc
+  - gtc
+  diagnostic_metrics:
+  - oa
+  - precision
+  - recall
+  - boundary_completeness
+  - boundary_correctness
+paths:
+  train_log_root: /root/wyk5/RGVNet/z_1_trainning_log/AI4Boundaries_1m
+  test_log_root: /root/wyk5/RGVNet/z_2_test/AI4Boundaries_1m
+  weights_root: /root/wyk5/RGVNet/z_3_weights/AI4Boundaries_1m
+  results_root: /root/wyk5/RGVNet/z_4_results/AI4Boundaries_1m
+region_contour_supervision:
+  enabled: true
+  weight: 0.01
+  radius: 8

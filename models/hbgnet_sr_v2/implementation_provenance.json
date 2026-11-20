@@ -1,0 +1,34 @@
+{
+  "version": "HBGNet_SR_v2",
+  "created_utc": "2026-09-15T09:49:27.004935+00:00",
+  "design_sha256": "051e73a42216ef77f943c7605ae17aa15924485bdac7a91c4611da29c9c713b2",
+  "design_spec_sha256": "7a43e73321ec998fba89541c83d0384b2a7ae8ccaa555c38cc957d843ee360b7",
+  "v1_source_snapshot": "/root/wyk5/RGVNet/z_6_不同消融组代码/HBGNet/局部分隔结构细化/v1_pre_v2_20260915",
+  "v1_package_manifest_sha256": "f22eda9b418e96d7bdcefe58a0b7455da507a1efc056f198a7cd5cd2607d1cc4",
+  "v1_tools_module_sha256": "15bdfa1c2c09bf1b46fecbcd2b0fd42cb268d3af4f19914dc4cca44fa16bda85",
+  "refiner_representation_unchanged": true,
+  "implemented_variants": [
+    "main",
+    "disabled",
+    "raw",
+    "band",
+    "nosr_band"
+  ],
+  "reserved_unimplemented_variants": [
+    "stopraw",
+    "stopall",
+    "linear",
+    "finalband"
+  ],
+  "baseline_files_unchanged": {
+    "implementation/losses.py": "719a43e76617bf1d6225c23a50c73a08a96678e9e4d7094b33997a9effe499f0",
+    "implementation/lib/pvtv2.py": "bad9a96bca9841679b5f7a5a97bf9bbc4239611fb4be6d0ba0783f64e4f9dc8c",
+    "protocol/dataset.py": "c1c53f54d99391707d0dd69c8edd606a20808230e758b2a8be0751d7735acea0",
+    "protocol/metrics.py": "93076dcdfcd17d9ee72beebd3a04f1379a82c05185553a760689edaaf0b309e6",
+    "protocol/hbgnet_baseline.yaml": "cd234aa0b758b48df384a7d4a74d3fceaf4f177e575a18cffec1efd4d91d79da",
+    "protocol/baseline_model.py": "2b217ec6cab49e29fdf381391eb1fcc83ffecdfa843f26c4bd7fe362fced61e1",
+    "training_state.py": "4144b6ccf177bcc4367b4a96548db3bb37c3a34eba9d1186817f90ce07502f0e"
+  },
+  "formal_training_started": false,
+  "formal_evaluation_started": false
+}

@@ -1,0 +1,338 @@
+[
+  {
+    "id": "table4_ready",
+    "entry": "assemble.py",
+    "args": [
+      "--core-only"
+    ],
+    "needs": [
+      "test_rgv_101",
+      "test_rgv_137",
+      "test_hbg_101",
+      "test_drr_101",
+      "test_hbg_137",
+      "test_drr_137"
+    ]
+  },
+  {
+    "id": "test_rgv_101",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "rgv_101"
+    ],
+    "needs": [
+      "rgv_101"
+    ]
+  },
+  {
+    "id": "test_rgv_137",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "rgv_137"
+    ],
+    "needs": [
+      "rgv_137"
+    ]
+  },
+  {
+    "id": "test_hbg_101",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "hbg_101"
+    ],
+    "needs": [
+      "hbg_101"
+    ]
+  },
+  {
+    "id": "test_drr_101",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "drr_101"
+    ],
+    "needs": [
+      "drr_101"
+    ]
+  },
+  {
+    "id": "test_hbg_137",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "hbg_137"
+    ],
+    "needs": [
+      "hbg_137"
+    ]
+  },
+  {
+    "id": "test_drr_137",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "drr_137"
+    ],
+    "needs": [
+      "drr_137"
+    ]
+  },
+  {
+    "id": "test_win7_17",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "win7_17"
+    ],
+    "needs": [
+      "win7_17"
+    ]
+  },
+  {
+    "id": "test_win7_41",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "win7_41"
+    ],
+    "needs": [
+      "win7_41"
+    ]
+  },
+  {
+    "id": "test_win7_73",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "win7_73"
+    ],
+    "needs": [
+      "win7_73"
+    ]
+  },
+  {
+    "id": "test_win7_101",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "win7_101"
+    ],
+    "needs": [
+      "win7_101"
+    ]
+  },
+  {
+    "id": "test_win7_137",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "win7_137"
+    ],
+    "needs": [
+      "win7_137"
+    ]
+  },
+  {
+    "id": "test_matched_17",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "matched_17"
+    ],
+    "needs": [
+      "matched_17"
+    ]
+  },
+  {
+    "id": "test_matched_41",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "matched_41"
+    ],
+    "needs": [
+      "matched_41"
+    ]
+  },
+  {
+    "id": "test_matched_73",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "matched_73"
+    ],
+    "needs": [
+      "matched_73"
+    ]
+  },
+  {
+    "id": "test_rgv_17",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "rgv_17"
+    ],
+    "needs": []
+  },
+  {
+    "id": "test_rgv_41",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "rgv_41"
+    ],
+    "needs": []
+  },
+  {
+    "id": "test_rgv_73",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "rgv_73",
+      "--cache"
+    ],
+    "needs": []
+  },
+  {
+    "id": "cache_hbg_val",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "hbg_73",
+      "--split",
+      "val",
+      "--cache",
+      "--cache-only"
+    ],
+    "needs": []
+  },
+  {
+    "id": "segfix_73",
+    "entry": "segfix.py",
+    "args": [
+      "train"
+    ],
+    "needs": [
+      "cache_hbg_val"
+    ]
+  },
+  {
+    "id": "test_hbg_73",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "hbg_73",
+      "--cache"
+    ],
+    "needs": []
+  },
+  {
+    "id": "segfix_test_73",
+    "entry": "segfix.py",
+    "args": [
+      "test"
+    ],
+    "needs": [
+      "segfix_73",
+      "test_hbg_73",
+      "test_rgv_73"
+    ]
+  },
+  {
+    "id": "seam_hbg_73",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "hbg_73",
+      "--seam"
+    ],
+    "needs": []
+  },
+  {
+    "id": "seam_rgv_73",
+    "entry": "eval_revision.py",
+    "args": [
+      "--run",
+      "rgv_73",
+      "--seam"
+    ],
+    "needs": []
+  },
+  {
+    "id": "seam_example",
+    "entry": "seam_example.py",
+    "args": [],
+    "needs": [
+      "seam_hbg_73",
+      "seam_rgv_73"
+    ]
+  },
+  {
+    "id": "latency_final",
+    "entry": "latency.py",
+    "args": [],
+    "needs": [
+      "table4_ready",
+      "test_rgv_101",
+      "test_rgv_137",
+      "test_hbg_101",
+      "test_drr_101",
+      "test_hbg_137",
+      "test_drr_137",
+      "test_win7_17",
+      "test_win7_41",
+      "test_win7_73",
+      "test_win7_101",
+      "test_win7_137",
+      "test_matched_17",
+      "test_matched_41",
+      "test_matched_73",
+      "test_rgv_17",
+      "test_rgv_41",
+      "test_rgv_73",
+      "cache_hbg_val",
+      "segfix_73",
+      "test_hbg_73",
+      "segfix_test_73",
+      "seam_hbg_73",
+      "seam_rgv_73",
+      "seam_example"
+    ]
+  },
+  {
+    "id": "paper_tables",
+    "entry": "assemble.py",
+    "args": [],
+    "needs": [
+      "table4_ready",
+      "test_rgv_101",
+      "test_rgv_137",
+      "test_hbg_101",
+      "test_drr_101",
+      "test_hbg_137",
+      "test_drr_137",
+      "test_win7_17",
+      "test_win7_41",
+      "test_win7_73",
+      "test_win7_101",
+      "test_win7_137",
+      "test_matched_17",
+      "test_matched_41",
+      "test_matched_73",
+      "test_rgv_17",
+      "test_rgv_41",
+      "test_rgv_73",
+      "cache_hbg_val",
+      "segfix_73",
+      "test_hbg_73",
+      "segfix_test_73",
+      "seam_hbg_73",
+      "seam_rgv_73",
+      "seam_example",
+      "latency_final"
+    ]
+  }
+]

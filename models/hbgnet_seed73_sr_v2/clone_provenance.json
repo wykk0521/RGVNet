@@ -1,0 +1,113 @@
+{
+  "schema": "hbgnet-seed-clone-v1",
+  "created_at_utc": "2026-10-02T15:23:40.009907+00:00",
+  "source_package": "/root/wyk5/RGVNet/models/hbgnet_seed17_sr_v2",
+  "source_seed": 17,
+  "target_package": "/root/wyk5/RGVNet/models/hbgnet_seed73_sr_v2",
+  "target_run_name": "hbgnet_protocol_b_seed73_sr_v2",
+  "target_seed": 73,
+  "physical_gpu": 1,
+  "auto_test": false,
+  "resume": false,
+  "initialization": "official_PVT_v2_B2_only",
+  "source_files_sha256": {
+    "common.py": "5874e80cdc2c8918145f14ffcb9291397276156b0cfc39554cc0e6e00b080763",
+    "config_band.yaml": "9395d87e63d353cd512f5beafe3e8bd3a52e89f3a8756ab2b1b7c9ed0c90a952",
+    "config_disabled.yaml": "eac0657c9243146c2edb5d977980250f8743e0a14b69286a61bf476dc022466d",
+    "config_nosr_band.yaml": "76ae1a18043109ce82c523d9b319423a1ee1cdd592b4ef5245404fea4b55fe82",
+    "config_protocol_b.yaml": "e77ce155a5d787cf135bf5ffe31679de2309ad0164f3599d0d2950cd58da5d5e",
+    "config_raw.yaml": "e0463fd50fb4998353a1bd7360d003a49ff010b3df32759b4d3d6a553c76017f",
+    "evaluate.py": "f34ccca9785b8e13e4ddc0d5dae0d53ea64a43cba115103db178eb0940b18305",
+    "implementation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "implementation/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "implementation/lib/pvtv2.py": "bad9a96bca9841679b5f7a5a97bf9bbc4239611fb4be6d0ba0783f64e4f9dc8c",
+    "implementation/losses.py": "719a43e76617bf1d6225c23a50c73a08a96678e9e4d7094b33997a9effe499f0",
+    "implementation/model.py": "5c424da04ccc2763f6185be8a98da52c8ccd14ffbf6129b1183e7a37c9fb915f",
+    "implementation_provenance.json": "2f2f50ed2fbffa3cfad5a793ef2bb4cb0ac5fedb43cc79a2b5c734818a43f9fe",
+    "protocol/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "protocol/baseline_model.py": "2b217ec6cab49e29fdf381391eb1fcc83ffecdfa843f26c4bd7fe362fced61e1",
+    "protocol/dataset.py": "c1c53f54d99391707d0dd69c8edd606a20808230e758b2a8be0751d7735acea0",
+    "protocol/hbgnet_baseline.yaml": "859e14a165ce16572050e86fb8841c71e1541cabab18a4586c11c78cd36420a0",
+    "protocol/metrics.py": "93076dcdfcd17d9ee72beebd3a04f1379a82c05185553a760689edaaf0b309e6",
+    "protocol/provenance.json": "57fbb9abafeeb29f9947eea0331be6d42d378ba8d46a3b570c9207e20f8e5a63",
+    "protocol/seanet_reference.yaml": "d49b29db1129f867cfb8b0d38682f1365910d10fdb6a8b699e6d090a137c8ba9",
+    "README.md": "4f08d70420d84eea25b96c45c414cfca2249e2b116f6c35babf3176433eeb945",
+    "run_evaluate.sh": "742867a9ed2bd3c17b5beafc2e3ae04ba1dc3457fb492859735724f917faf427",
+    "run_train.sh": "75d5292cd29934f203cbd031b8969d2597038839dfee8d0998ee1371a486c25d",
+    "train.py": "7f0e8a14cc8f203f8b109abf2cbb498aa669507f5cf08a64d86c9bc19ecf9a9b",
+    "training_state.py": "4144b6ccf177bcc4367b4a96548db3bb37c3a34eba9d1186817f90ce07502f0e",
+    "verify_band_loss.py": "dcfd6c80a412c8e6dbacfc71db2685dce759b94d3d1f276a4eed4b3edb5a1ec4",
+    "verify_local_separation.py": "cacdebc6acc80e2142a7d2019417ce1d18a7ab2a725a077c7c1190155793ee58",
+    "verify_sr.py": "a5a87e2642149405d6a37a1767b15cb4c6e7c2b728ae6fc3fae6e3da2f30a036",
+    "verify_training_state.py": "567962ab36ea7bd86d1589781edf2e78040e014a0892ea2d3db11ffb93cf4360",
+    "package_manifest.json": "880b01a538e3dea2646ac92519b429308057497f3b442ba1afc9adfd0ec3230e",
+    "verification.json": "0cd28dcb6ef2975af9de69eed0710a04ec472107df855232adb7d74ae7e9e3e7",
+    "pretrained/pvt_v2_b2.pth": "80711cd1b37ffba12bec6c7a2a7c54efe2315ed635e6d2055fd51c3e909ede4d",
+    "pretrained/pvt_v2_b2.json": "38ee48095a594b07547658947889993a46f16e5cb4ae191b51716478253bace6"
+  },
+  "external_files_sha256": {
+    "tools/__init__.py": "6e349f7d8cde52b5fdd8d13dc54b7bf756b181b322e5e0d7ed58b3abbea337f8",
+    "tools/local_separation_refinement_v2.py": "15bdfa1c2c09bf1b46fecbcd2b0fd42cb268d3af4f19914dc4cca44fa16bda85",
+    "tools/region_boundary_band_loss_v2.py": "bc9e97186769fae0bccc5be55b33fe0f102346c9e641a089841f7a1ff236adcd"
+  },
+  "changed_static_files": [
+    "README.md",
+    "common.py",
+    "config_band.yaml",
+    "config_disabled.yaml",
+    "config_nosr_band.yaml",
+    "config_protocol_b.yaml",
+    "config_raw.yaml",
+    "implementation_provenance.json",
+    "launch_sr_v2_audited.py",
+    "launch_sr_v2_gpu1.sh",
+    "protocol/hbgnet_baseline.yaml",
+    "run_evaluate.sh",
+    "run_train.sh",
+    "train.py",
+    "verify_sr.py"
+  ],
+  "configuration_parity": {
+    "config_band.yaml": {
+      "source_sha256": "9395d87e63d353cd512f5beafe3e8bd3a52e89f3a8756ab2b1b7c9ed0c90a952",
+      "target_sha256": "8e37ae5192942307d74cb4f601e2d66e70605b21d264a739ce793e5ab0f2f578",
+      "allowed_changes_only": true
+    },
+    "config_disabled.yaml": {
+      "source_sha256": "eac0657c9243146c2edb5d977980250f8743e0a14b69286a61bf476dc022466d",
+      "target_sha256": "8de81c3faffda3d5e0f568305bdde36e94de097d7e16acf56c2acbc62e9c3f29",
+      "allowed_changes_only": true
+    },
+    "config_nosr_band.yaml": {
+      "source_sha256": "76ae1a18043109ce82c523d9b319423a1ee1cdd592b4ef5245404fea4b55fe82",
+      "target_sha256": "26d2ae06932fde92d70bddd606d6123b2e9c3d5de501fc55957365dfc9a49e46",
+      "allowed_changes_only": true
+    },
+    "config_protocol_b.yaml": {
+      "source_sha256": "e77ce155a5d787cf135bf5ffe31679de2309ad0164f3599d0d2950cd58da5d5e",
+      "target_sha256": "bf73251fc08e66f9485669dd039962218fa1fa90facc6ec6cdab682c491275aa",
+      "allowed_changes_only": true
+    },
+    "config_raw.yaml": {
+      "source_sha256": "e0463fd50fb4998353a1bd7360d003a49ff010b3df32759b4d3d6a553c76017f",
+      "target_sha256": "87536bae6ee8ccafdd4ad3cad122d2940be726b605ad47cc6839174edf24f552",
+      "allowed_changes_only": true
+    }
+  },
+  "split_manifest_sha256": {
+    "train": "85e9ff248be6aa66fcbdba82d1f61a0d26d9ead9ef449a6708e211abc7181201",
+    "val": "4be22a48eead8fe9c91f58c890dc161e70d81ff956b4ba75b2e92198f86dd5cd",
+    "test": "f669288a374c4a3fed1c3a0379e995ebe1db6a35564a10b6a0241613a4093163"
+  },
+  "excluded": [
+    "old locks",
+    "old verification reports",
+    "old status files",
+    "old runtime logs",
+    "old formal launch evidence",
+    "old trained checkpoints",
+    "Python caches",
+    "old deployment zip"
+  ],
+  "control_relocation": null
+}

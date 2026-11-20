@@ -1,0 +1,17 @@
+{
+  "ai4boundaries": {
+    "train": "85e9ff248be6aa66fcbdba82d1f61a0d26d9ead9ef449a6708e211abc7181201",
+    "val": "4be22a48eead8fe9c91f58c890dc161e70d81ff956b4ba75b2e92198f86dd5cd",
+    "test": "f669288a374c4a3fed1c3a0379e995ebe1db6a35564a10b6a0241613a4093163"
+  },
+  "fhapd_xj": {
+    "train": "b63c9766ee80941f302492b416d7db0e728a2ad8653e878d366f20aa20edefc6",
+    "val": "c20530bb78b8861716ed827cfb91fd18aafde386e27ab36135a261ee0e058ae4",
+    "test": "d25ab89d383a88a3059cd54eef41267b746d00394ca2946abb9b9822e262d934"
+  },
+  "fhapd_js": {
+    "train": "41b009fe25905127b34c6c68f8ae7627aa4ed67864c45a3ec84b4dd7a76154d5",
+    "val": "d7f7cb2de3ff2da29279770329896e92945c4834d2103a09244c26a1cbe2fbf3",
+    "test": "d737be9412199aa66769abaa455ba05e3c0b4a8690ba0fdbb2f94d2d7197e2dc"
+  }
+}
